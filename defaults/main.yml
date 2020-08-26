@@ -1,0 +1,16 @@
+---
+default_user: 'ubuntu'
+HOSTNAME: ""
+DOCKER_LOG_DRIVER: "json-file"
+DOCKER_LOG_OPTIONS: "{}"
+IMAGE: "rabbitmq"
+BUILD: "3.8.7"
+#RABBITMQ_USER: "admin"
+#RABBITMQ_PASSWORD: "Pa$$word"
+RABBIT_NODENAME: ""
+RABBIT_USE_LONGNAME: "false"
+RABBIT_ERLANG_COOKIE: "supersecretcookie"
+RABBIT_PLUGINGS: rabbitmq_management
+RABBIT_VM_MEMORY_HIGH_WATERMARK: "0.61"
+RABBIT_TOTAL_MEMORY_AVAILABLE: "1GB"
+
