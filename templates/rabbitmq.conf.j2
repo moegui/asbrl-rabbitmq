@@ -1,6 +1,10 @@
-#cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
-#cluster_formation.k8s.host = kubernetes.default.svc.cluster.local
-#cluster_formation.k8s.address_type = ip
+{% if RABBIT_DISCOVERY == "classic_config" %} 
+cluster_formation.peer_discovery_backend  = classic_config
+{% elseif RABBIT_DISCOVERY == "aws" %} 
+cluster_formation.peer_discovery_backend  = aws
+cluster_formation.aws.region = {{REGION}}
+cluster_formation.aws.instance_tags.{{DISCOVERY_AWS_TAG_NAME}} = {{DISCOVERY_AWS_TAG_VALUE}}
+{% endif %}
 cluster_formation.node_cleanup.interval = 30
 cluster_formation.node_cleanup.only_log_warning = true
 cluster_partition_handling = autoheal
