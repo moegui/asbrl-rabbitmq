@@ -3,7 +3,8 @@ cluster_formation.peer_discovery_backend  = classic_config
 {% elif RABBIT_DISCOVERY == "aws" %} 
 cluster_formation.peer_discovery_backend  = aws
 cluster_formation.aws.region = {{REGION}}
-cluster_formation.aws.instance_tags.{{DISCOVERY_AWS_TAG_NAME}} = {{DISCOVERY_AWS_TAG_VALUE}}
+#cluster_formation.aws.instance_tags.{{DISCOVERY_AWS_TAG_NAME}} = {{DISCOVERY_AWS_TAG_VALUE}}
+cluster_formation.aws.use_autoscaling_group = true
 {% endif %}
 cluster_formation.node_cleanup.interval = 30
 cluster_formation.node_cleanup.only_log_warning = true
