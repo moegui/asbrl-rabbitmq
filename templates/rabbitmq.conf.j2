@@ -1,6 +1,6 @@
 {% if RABBIT_DISCOVERY == "classic_config" %} 
 cluster_formation.peer_discovery_backend  = classic_config
-{% elseif RABBIT_DISCOVERY == "aws" %} 
+{% elif RABBIT_DISCOVERY == "aws" %} 
 cluster_formation.peer_discovery_backend  = aws
 cluster_formation.aws.region = {{REGION}}
 cluster_formation.aws.instance_tags.{{DISCOVERY_AWS_TAG_NAME}} = {{DISCOVERY_AWS_TAG_VALUE}}
