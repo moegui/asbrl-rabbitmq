@@ -23,9 +23,9 @@
     image: "{{IMAGE}}:{{BUILD}}"
     pull: "true"
     env:
-      RABBITMQ_USE_LONGNAME: "{{RABBIT_USE_LONGNAME}}"
-      RABBITMQ_NODENAME: "{{RABBIT_NODENAME}}"
-      RABBITMQ_ERLANG_COOKIE: "{{RABBIT_ERLANG_COOKIE}}"
+      RABBITMQ_USE_LONGNAME: "{{USE_LONGNAME}}"
+      RABBITMQ_NODENAME: "{{NODENAME}}"
+      RABBITMQ_ERLANG_COOKIE: "{{ERLANG_COOKIE}}"
     network_mode: host 
     recreate: "yes"
     state: "started"
