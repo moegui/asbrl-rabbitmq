@@ -19,7 +19,7 @@
 - name: RabbitMQ-Node
   docker_container:
     name: "rabbitmq"
-    hostname: "{{HOSTNAME}}"
+    #hostname: "{{HOSTNAME}}"
     image: "{{IMAGE}}:{{BUILD}}"
     pull: "true"
     env:
