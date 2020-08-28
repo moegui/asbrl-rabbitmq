@@ -1,7 +1,5 @@
-{% if RABBIT_DISCOVERY == "classic_config" %} 
-cluster_formation.peer_discovery_backend  = classic_config
-{% elif RABBIT_DISCOVERY == "aws" %} 
-cluster_formation.peer_discovery_backend  = aws
+cluster_formation.peer_discovery_backend  = {{RABBIT_DISCOVERY}}
+{% if RABBIT_DISCOVERY == "rabbit_peer_discovery_aws" %} 
 cluster_formation.aws.region = {{REGION}}
 cluster_formation.aws.use_autoscaling_group = true
 {% endif %}
