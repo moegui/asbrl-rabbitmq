@@ -5,7 +5,6 @@ DOCKER_LOG_DRIVER: "json-file"
 DOCKER_LOG_OPTIONS: "{}"
 IMAGE: "rabbitmq"
 BUILD: "3.8.7"
-NODENAME: ""
 USE_LONGNAME: "false"
 ERLANG_COOKIE: "supersecretcookie"
 PLUGINGS: rabbitmq_management
