@@ -24,17 +24,17 @@
     pull: "true"
     env:
       RABBITMQ_USE_LONGNAME: "{{USE_LONGNAME}}"
-      RABBITMQ_NODENAME: "{{NODENAME}}"
+    #  RABBITMQ_NODENAME: "{{NODENAME}}"
       RABBITMQ_ERLANG_COOKIE: "{{ERLANG_COOKIE}}"
-    #network_mode: host 
+    network_mode: host 
     recreate: "yes"
     state: "started"
     log_driver: "{{DOCKER_LOG_DRIVER}}"
     log_options: "{{DOCKER_LOG_OPTIONS}}"
     #memory: 768m
     restart_policy: "unless-stopped"
-    published_ports:
-      - "0.0.0.0:5672:5672"
-      - "0.0.0.0:15672:15672"
+    # published_ports:
+    #   - "0.0.0.0:5672:5672"
+    #   - "0.0.0.0:15672:15672"
     volumes:
       - /home/{{default_user}}/rabbitmq/:/etc/rabbitmq/
