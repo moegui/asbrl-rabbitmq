@@ -1,0 +1,17 @@
+cluster_formation.peer_discovery_backend  = {{DISCOVERY}}
+{% if DISCOVERY == "rabbit_peer_discovery_aws" %} 
+cluster_formation.aws.region = {{REGION}}
+cluster_formation.aws.use_autoscaling_group = {{DISCOVERY_AWS_ASG}}
+cluster_formation.aws.use_private_ip = {{DISCOVERY_AWS_PRIVATE_IP}}
+{% if DISCOVERY_AWS_ASG == "false" %} 
+cluster_formation.aws.instance_tags.{{DISCOVERY_AWS_TAG_NAME}} = {{DISCOVERY_AWS_TAG_VALUE}}
+{% endif %}
+{% endif %}
+cluster_formation.node_cleanup.interval = {{CLEANUP_INTERVAL}}
+cluster_formation.node_cleanup.only_log_warning = {{CLEANUP_ONLY_LOG_WARNING}}
+cluster_partition_handling = {{PARTITION_HANDLING}}  
+queue_master_locator = {{QUEUE_MASTER_LOCATOR}}
+loopback_users = {{LOOPBACK_USERS}}
+vm_memory_high_watermark.relative = {{VM_MEMORY_HIGH_WATERMARK}}
+log.console.level = {{LOG_LEVEL}}
+#management.load_definitions = /etc/rabbitmq/definitions.json

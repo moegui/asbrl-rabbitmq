@@ -1,0 +1,23 @@
+---
+default_user: 'ubuntu'
+HOSTNAME: ""
+DOCKER_LOG_DRIVER: "json-file"
+DOCKER_LOG_OPTIONS: "{}"
+IMAGE: "rabbitmq"
+BUILD: "3.8.7"
+USE_LONGNAME: "false"
+ERLANG_COOKIE: "supersecretcookie"
+PLUGINGS: rabbitmq_management
+VM_MEMORY_HIGH_WATERMARK: "0.61"
+#TOTAL_MEMORY_AVAILABLE: "512MB"
+DISCOVERY: "classic_config"
+DISCOVERY_AWS_PRIVATE_IP: "false"
+DISCOVERY_AWS_ASG: "true"
+DISCOVERY_AWS_TAG_NAME: "ClusterName"
+DISCOVERY_AWS_TAG_VALUE: ""
+CLEANUP_INTERVAL: 30
+CLEANUP_ONLY_LOG_WARNING: "false"
+PARTITION_HANDLING: "ignore"
+QUEUE_MASTER_LOCATOR: "min-masters"
+LOOPBACK_USERS: "none"
+LOG_LEVEL: "info"
