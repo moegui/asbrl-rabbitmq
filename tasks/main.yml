@@ -1,39 +1,39 @@
 ---
 - name: Create RabbitMQ directory
   file:
-    path: /home/{{default_user}}/rabbitmq/
-    state: directory  
+    path: /home/{{ default_user }}/rabbitmq/
+    state: directory
+    mode: 0644
 
 - name: RabbitMQ config file
   template:
-    src: "{{item.name}}.j2"
-    dest: "/home/{{default_user}}/rabbitmq/{{item.name}}"  
-    mode: '0644'
+    src: "{{ item.name }}.j2"
+    dest: "/home/{{ default_user }}/rabbitmq/{{ item.name }}"
+    mode: 0644
   vars:
     templates:
     - name: rabbitmq.conf
     - name: enabled_plugins
    # - name: definitions.json
-  with_items: "{{ templates }}" 
+  with_items: "{{ templates }}"
 
 - name: RabbitMQ-Node
   docker_container:
     name: "rabbitmq"
-    #hostname: "{{HOSTNAME}}"
-    image: "{{IMAGE}}:{{BUILD}}"
+    image: "{{ IMAGE }}:{{ BUILD }}"
     pull: "true"
     env:
-      RABBITMQ_USE_LONGNAME: "{{USE_LONGNAME}}"
-      RABBITMQ_ERLANG_COOKIE: "{{ERLANG_COOKIE}}"
-    network_mode: host 
+      RABBITMQ_USE_LONGNAME: "{{ USE_LONGNAME }}"
+      RABBITMQ_ERLANG_COOKIE: "{{ ERLANG_COOKIE }}"
+    network_mode: host
     recreate: "yes"
     state: "started"
-    log_driver: "{{DOCKER_LOG_DRIVER}}"
-    log_options: "{{DOCKER_LOG_OPTIONS}}"
+    log_driver: "{{ DOCKER_LOG_DRIVER }}"
+    log_options: "{{ DOCKER_LOG_OPTIONS }}"
     #memory: 768m
     restart_policy: "unless-stopped"
     # published_ports:
     #   - "0.0.0.0:5672:5672"
     #   - "0.0.0.0:15672:15672"
     volumes:
-      - /home/{{default_user}}/rabbitmq/:/etc/rabbitmq/
+      - /home/{{ default_user }}/rabbitmq/:/etc/rabbitmq/
