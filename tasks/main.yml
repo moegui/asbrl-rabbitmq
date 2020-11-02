@@ -3,14 +3,12 @@
   file:
     path: /home/{{ default_user }}/rabbitmq/
     state: directory
-    owner: "{{ default_user }}"
-    mode: 0644
+    mode: 0755
 
 - name: RabbitMQ config file
   template:
     src: "{{ item.name }}.j2"
     dest: "/home/{{ default_user }}/rabbitmq/{{ item.name }}"
-    owner: "{{ default_user }}"
     mode: 0644
   vars:
     templates:
