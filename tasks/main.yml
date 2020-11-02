@@ -3,7 +3,7 @@
   file:
     path: /home/{{ default_user }}/rabbitmq/
     state: directory
-    mode: 0644
+    mode: 0755
 
 - name: RabbitMQ config file
   template:
