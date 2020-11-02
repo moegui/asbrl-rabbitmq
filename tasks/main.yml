@@ -9,7 +9,7 @@
   template:
     src: "{{ item.name }}.j2"
     dest: "/home/{{ default_user }}/rabbitmq/{{ item.name }}"
-    mode: 0644
+    mode: 0666
   vars:
     templates:
     - name: rabbitmq.conf
