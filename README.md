@@ -1,38 +1,76 @@
 ASBRL-RABBITMQ
 =========
 
-Deploy a RabbitMQ container.
+Deploy a single RabbitMQ node as a Docker container.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Need to be Docker engine installed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- default_user: 'ubuntu'
+- HOSTNAME: ""
+- DOCKER_LOG_DRIVER: "json-file"
+- DOCKER_LOG_OPTIONS: "{}"
+- IMAGE: "rabbitmq"
+- BUILD: "3.8.7"
+- USE_LONGNAME: "false"
+- ERLANG_COOKIE: "supersecretcookie"
+- PLUGINGS: rabbitmq_management
+- VM_MEMORY_HIGH_WATERMARK: "0.61"
+- DISCOVERY: "classic_config"
+- DISCOVERY_AWS_PRIVATE_IP: "false"
+- DISCOVERY_AWS_ASG: "true"
+- DISCOVERY_AWS_TAG_NAME: "ClusterName"
+- DISCOVERY_AWS_TAG_VALUE: ""
+- CLEANUP_INTERVAL: 30
+- CLEANUP_ONLY_LOG_WARNING: "false"
+- PARTITION_HANDLING: "ignore"
+- QUEUE_MASTER_LOCATOR: "min-masters"
+- LOOPBACK_USERS: "none"
+- LOG_LEVEL: "info"
+- DOCKER_NETWORK_MODE: "bridge"
+- CONTAINER_NAME: "rabbitmq"
+- DOCKER_CPU_PERIOD: 0
+- DOCKER_CPU_QUOTA: 0
+- DOCKER_MEMORY: 0
+- DOCKER_LABELS:
+  - tag1: test
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+        - name: Deploy RabbitMQ Node
+          include_role:
+            name: asbrl-rabbitmq
+          vars:
+            DOCKER_LOG_DRIVER: "awslogs"
+            DOCKER_LOG_OPTIONS: '{"awslogs-region":"{{REGION}}","awslogs-group":"{{LOGS_GROUP_NAME}}","tag":"{{ansible_nodename}}-rabbitmq"}'
+            METRICS_INTERVAL: "{{PSCloudwatch.MetricsInterval}}"  
+            RABBIT_PLUGINGS: rabbitmq_management,rabbitmq_peer_discovery_aws
+            ERLANG_COOKIE: "{{PSRabbitMQ.ErlangCookie}}"
+            VM_MEMORY_HIGH_WATERMARK: "{{PSRabbitMQ.VmMemoryHighWatermark}}"
+            CLEANUP_INTERVAL: "{{PSRabbitMQ.NodeCleanupInterval}}"
+            CLEANUP_ONLY_LOG_WARNING: "{{PSRabbitMQ.NodeCleanupOnlyWarning}}"
+            PARTITION_HANDLING: "{{PSRabbitMQ.PartitionHandling}}"
+            QUEUE_MASTER_LOCATOR: "{{PSRabbitMQ.QueueMasterLocator}}"
+            LOOPBACK_USERS: "{{PSRabbitMQ.LoopbackUsers}}"
+            LOG_LEVEL: "{{PSRabbitMQ.LogLevel}}"
 
 License
 -------
 
-BSD
+GNU General Public License v3.0 only
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Moegui.com
