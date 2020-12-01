@@ -39,6 +39,8 @@ Role Variables
 - DOCKER_MEMORY: 0
 - DOCKER_LABELS:
   - tag1: test
+- ADMIN_USER: guest
+- ADMIN_PASSWORD: guest
 
 Dependencies
 ------------
